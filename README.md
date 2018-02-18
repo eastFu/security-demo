@@ -53,6 +53,16 @@ Spring Security对Web安全性的支持大量地依赖于Servlet过滤器。通�
 
 （3）资源访问控制：MySecurityInterceptor继承AbstractSecurityInterceptor、实现Filter是必须的。登陆后，每次访问资源都会被MySecurityInterceptor这个拦截器拦截，它首先会调用MyFilterInvocationSecurityMetadataSource类的getAttributes方法获取被拦截url所需的权限，在调用MyAccessDecisionManager类decide方法判断用户是否够权限。
 
+补充说明一下：
+
+UserDetailsService在身份认证中的作用：
+
+Spring Security中进行身份验证的是AuthenticationManager接口，ProviderManager是它的一个默认实现，但它并不用来处理身份认证，而是委托给配置好的AuthenticationProvider，每个AuthenticationProvider会轮流检查身份认证。检查后或者返回Authentication对象或者抛出异常。
+
+验证身份就是加载响应的UserDetails，看看是否和用户输入的账号、密码、权限等信息匹配。此步骤由实现AuthenticationProvider的DaoAuthenticationProvider（它利用UserDetailsService验证用户名、密码和授权）处理。
+
+因此，登录认证其实可以不实现UserDetailsService，而是实现AuthenticationProvider，然后在AuthenticationProvider里面获取用户输入的用户名和密码进行校验也是可以的。或者两者一起使用。
+
 http://blog.csdn.net/u012367513/article/details/38866465
 
 http://blog.csdn.net/u013142781/article/details/50631663
