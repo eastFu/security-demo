@@ -16,33 +16,33 @@ Spring Security对Web安全性的支持大量地依赖于Servlet过滤器。通�
 
 要完成访问控制，Spring Security至少需要下面四个拦截器（调度器、认证管理器、权限资源关联器、访问决策器）进行配合完成：
 
-  <!-- mySecurityInterceptor这里我们把它命名为调度器吧 -->
-  <!-- 必须包含 authenticationManager,securityMetadataSource,accessDecisionManager 三个属性 -->   
-  <!-- 我们的所有控制将在这三个类中实现 --> 
-  <!-- 它继承AbstractSecurityInterceptor类并实现了Filter接口 --> 
-  <bean id="mySecurityInterceptor" class="com.luo.Filter.MySecurityInterceptor">  
-      <b:property name="authenticationManager" ref="authenticationManager" />  
-      <b:property name="securityMetadataSource" ref="securityMetadataSource" />  
-      <b:property name="accessDecisionManager" ref="accessDecisionManager" />  
+    <!-- mySecurityInterceptor这里我们把它命名为调度器吧 -->
+    <!-- 必须包含 authenticationManager,securityMetadataSource,accessDecisionManager 三个属性 -->   
+    <!-- 我们的所有控制将在这三个类中实现 --> 
+    <!-- 它继承AbstractSecurityInterceptor类并实现了Filter接口 --> 
+    <bean id="mySecurityInterceptor" class="com.luo.Filter.MySecurityInterceptor">  
+        <b:property name="authenticationManager" ref="authenticationManager" />  
+        <b:property name="securityMetadataSource" ref="securityMetadataSource" />  
+        <b:property name="accessDecisionManager" ref="accessDecisionManager" />  
 
-  </bean>  
+    </bean>  
 
-  <!-- 认证管理器，实现用户认证的入口 -->  
-  <authentication-manager alias="authenticationManager">  
-      <authentication-provider user-service-ref="myUserDetailService" />   
-  </authentication-manager>  
+    <!-- 认证管理器，实现用户认证的入口 -->  
+    <authentication-manager alias="authenticationManager">  
+        <authentication-provider user-service-ref="myUserDetailService" />   
+    </authentication-manager>  
 
-  <!-- 在这个类中，你就可以从数据库中读入用户的密码，角色信息等 -->  
-  <!-- 主要实现UserDetailsService接口即可，然后返回用户数据 -->  
-  <bean id="myUserDetailService" class="com.luo.Filter.MyUserDetailService" />  
+    <!-- 在这个类中，你就可以从数据库中读入用户的密码，角色信息等 -->  
+    <!-- 主要实现UserDetailsService接口即可，然后返回用户数据 -->  
+    <bean id="myUserDetailService" class="com.luo.Filter.MyUserDetailService" />  
 
-  <!-- 权限资源关联器，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色访问 -->  
-  <!-- 它实现了FilterInvocationSecurityMetadataSource接口 -->  
-  <bean id="securityMetadataSource" class="com.luo.Filter.MyFilterInvocationSecurityMetadataSource" /> 
+    <!-- 权限资源关联器，将所有的资源和权限对应关系建立起来，即定义某一资源可以被哪些角色访问 -->  
+    <!-- 它实现了FilterInvocationSecurityMetadataSource接口 -->  
+    <bean id="securityMetadataSource" class="com.luo.Filter.MyFilterInvocationSecurityMetadataSource" /> 
 
-  <!--访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 --> 
-  <!-- 它实现了AccessDecisionManager接口 --> 
-  <bean id="accessDecisionManager" class="com.luo.Filter.MyAccessDecisionManager">
+    <!--访问决策器，决定某个用户具有的角色，是否有足够的权限去访问某个资源 --> 
+    <!-- 它实现了AccessDecisionManager接口 --> 
+    <bean id="accessDecisionManager" class="com.luo.Filter.MyAccessDecisionManager">
 
 
 看完上面的配置，可能未必能够完全明白，下面我们再进一步说明。
