@@ -63,7 +63,9 @@ Spring Security中进行身份验证的是AuthenticationManager接口，Provider
 
 因此，登录认证其实可以不实现UserDetailsService，而是实现AuthenticationProvider，然后在AuthenticationProvider里面获取用户输入的用户名和密码进行校验也是可以的。或者两者一起使用。
 
+
 http://blog.csdn.net/u012367513/article/details/38866465
+
 
 http://blog.csdn.net/u013142781/article/details/50631663
 
