@@ -53,6 +53,7 @@ Spring Security对Web安全性的支持大量地依赖于Servlet过滤器。通�
 
 （3）资源访问控制：MySecurityInterceptor继承AbstractSecurityInterceptor、实现Filter是必须的。登陆后，每次访问资源都会被MySecurityInterceptor这个拦截器拦截，它首先会调用MyFilterInvocationSecurityMetadataSource类的getAttributes方法获取被拦截url所需的权限，在调用MyAccessDecisionManager类decide方法判断用户是否够权限。
 
+
 补充说明一下：
 
 UserDetailsService在身份认证中的作用：
