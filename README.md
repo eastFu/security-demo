@@ -70,3 +70,4 @@ http://blog.csdn.net/u012367513/article/details/38866465
 
 http://blog.csdn.net/u013142781/article/details/50631663
 
+# 应用场景和不足
