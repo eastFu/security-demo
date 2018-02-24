@@ -24,8 +24,7 @@ Spring Security对Web安全性的支持大量地依赖于Servlet过滤器。通�
         <b:property name="authenticationManager" ref="authenticationManager" />  
         <b:property name="securityMetadataSource" ref="securityMetadataSource" />  
         <b:property name="accessDecisionManager" ref="accessDecisionManager" />  
-
-    </bean>  
+    </bean>
 
     <!-- 认证管理器，实现用户认证的入口 -->  
     <authentication-manager alias="authenticationManager">  
