@@ -25,7 +25,6 @@ Spring Security对Web安全性的支持大量地依赖于Servlet过滤器。通�
         <b:property name="securityMetadataSource" ref="securityMetadataSource" />  
         <b:property name="accessDecisionManager" ref="accessDecisionManager" />  
     </bean>
-
     <!-- 认证管理器，实现用户认证的入口 -->  
     <authentication-manager alias="authenticationManager">  
         <authentication-provider user-service-ref="myUserDetailService" />   
@@ -63,12 +62,9 @@ Spring Security中进行身份验证的是AuthenticationManager接口，Provider
 
 因此，登录认证其实可以不实现UserDetailsService，而是实现AuthenticationProvider，然后在AuthenticationProvider里面获取用户输入的用户名和密码进行校验也是可以的。或者两者一起使用。
 
-
 http://blog.csdn.net/u012367513/article/details/38866465
 
-
 http://blog.csdn.net/u013142781/article/details/50631663
-
 
 # 应用场景和不足
 适用场景：
